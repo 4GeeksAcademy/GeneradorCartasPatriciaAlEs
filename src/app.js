@@ -1,26 +1,9 @@
 /* eslint-disable no-console */
-import "./style.css";
+import "./styles.css";
 
 const numeroDeCartas = ["A", "1", "2", "3", "4", "5", "6", "7", "J", "Q", "K"];
 const palosDeCartas = ["♦", "♠", "♥", "♣"];
 
-window.onload = () => {
-  generarCartaRandom();
-  document
-    .getElementById("botonCartas")
-    .addEventListener("click", generarCartaRandom);
-};
-function generarCartaRandom() {
-  const resultadoNumeroRandom = devuelveNumeroRandom();
-  const resultadoPaloRandom = devuelvePaloRandom();
-
-  // Asignar los resultados al DOM (por ID)
-  document.getElementById("numero").innerHTML = resultadoNumeroRandom;
-  document.getElementById("palo-arriba").innerHTML = resultadoPaloRandom;
-  document.getElementById("palo-abajo").innerHTML = resultadoPaloRandom;
-
-  aplicarColorPalo(resultadoPaloRandom);
-}
 function devuelveNumeroRandom() {
   const numeroIndex = Math.floor(Math.random() * numeroDeCartas.length);
   return numeroDeCartas[numeroIndex];
@@ -43,5 +26,37 @@ function aplicarColorPalo(palo) {
   }
 }
 
-const botonCartas = document.getElementById("botonCartas");
-botonCartas.addEventListener("click", () => {});
+function generarCartaRandom() {
+  const resultadoNumeroRandom = devuelveNumeroRandom();
+  const resultadoPaloRandom = devuelvePaloRandom();
+
+  // Asignar los resultados al DOM (por ID)
+  document.getElementById("numero").innerHTML = resultadoNumeroRandom;
+  document.getElementById("palo-arriba").innerHTML = resultadoPaloRandom;
+  document.getElementById("palo-abajo").innerHTML = resultadoPaloRandom;
+
+  aplicarColorPalo(resultadoPaloRandom);
+}
+
+function aplicarDimensiones() {
+  const anchocarta = document.getElementById("anchocarta").value;
+  const altocarta = document.getElementById("altocarta").value;
+  const card = document.getElementById("card");
+
+  if (altocarta && anchocarta) {
+    card.style.width = altocarta + "px";
+    card.style.height = anchocarta + "px";
+  }
+}
+
+setInterval(generarCartaRandom, 10000);
+
+window.onload = () => {
+  generarCartaRandom();
+
+  const botonCartas = document.getElementById("botonCartas");
+  botonCartas.addEventListener("click", () => {
+    generarCartaRandom();
+    aplicarDimensiones();
+  });
+};

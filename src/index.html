@@ -16,12 +16,12 @@
     <div class="container">
       <input
         type="submit"
-        value="Botón Ludopata"
+        value="Generar Carta y Aplicar Dimensiones"
         id="botonCartas"
         name="botonCartas"
       />
 
-      <div class="card">
+      <div class="card" id="card">
         <div class="top-left">
           <div id="palo-arriba" class="palo"></div>
         </div>
@@ -31,6 +31,11 @@
         <div class="bottom-right">
           <div id="palo-abajo" class="palo"></div>
         </div>
+      </div>
+      <div id="divDelBoton">
+        <p>Introduce Ancho y alto</p>
+        <input type="number" placeholder="Mete aqui el ancho" id="anchocarta" />
+        <input type="number" placeholder="Mete aqui el alto" id="altocarta" />
       </div>
     </div>
     <script type="text/javascript" src="bundle.bundle.js"></script>
